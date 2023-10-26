@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include<string.h>
+
+//menu-driven program that asks the user
+//for the initial length of the array, and then stores those corresponding strings (also taken as
+//input) into a dynamic array initialised with that length. Then, begin a loop of the menu that
+//prompts the user to select one of five options:
+//(a) Add a string to the end of the array,
+//(b) Add a string to the beginning of the array,
+//(c) Delete the element at index ‘x’ (taken as input) of the array,
+//(d) Display the length of the array,
+//(e) Display all the elements of the array in sequence.
+//The addition and deletion of strings must result in resizing of the array. The user should have a
+//sixth option that would enable them to close the menu-driven program
+
+
+int main(void){
+    int n;
+    printf("Enter size of array: ");
+    scanf("%d", &n);
+    char ** array = (char**) malloc(n*sizeof(char*));
+
+    for(int i = 0; i <n; i++){
+        char c[100];
+        
+        scanf("Enter string %[^\n]s", c);
+        array[i] = (malloc(sizeof(char)*strlen(c)));
+    }
+
+    while(true){
+        char c;
+        scanf("Enter option: %c", &c);
+        if(c=='a'){
+            array = (char**) realloc(array, (n+1)*sizeof(char*));
+        }
+    }
+
+}

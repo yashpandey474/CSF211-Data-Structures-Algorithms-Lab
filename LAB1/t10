@@ -1,0 +1,109 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+int main(){
+    typedef struct student* STUDENT;
+    struct student{
+        char* ID;
+        int cgpa;
+    };
+    typedef struct studentNode * STNODE;
+    struct studentNode{
+        char*ID;
+        int cgpa;
+        STNODE next;
+    }
+    typedef struct linkedList* LIST;
+    struct linkedList{
+        int count;
+        STNODE head;
+    };
+    
+    
+    void addNode(LIST l1, char* ID, int cgpa){
+        STNODE node;
+        node = (STNODE)malloc(sizeof(struct studentNode));
+        node->ID = ID;
+        node->cgpa = cgpa;
+
+        if(l1->count==0){
+            l1->head=node;
+            l1->count++;
+            return;
+        }
+        NODE temp;
+        temp = l1->head;
+        while(temp->next!=NULL){
+            temp = temp->next;
+        }
+        temp->next = node;
+        l1->count++; 
+    }
+
+    /// @brief 
+    /// @return 
+    LIST createList(){
+        LIST list;
+        list = LIST malloc(sizeof(struct linkedList));
+        list->count=0;
+        list->head=NULL;
+        return list;
+    }
+    
+
+    //data.txt contains records for 10,000 students in comma separated
+    FILE* fp;
+    fp = fopen("data.txt", "r");
+    char * value = malloc(1000*sizeof(char));
+
+    STUDENT array;
+    array = (STUDENT) malloc(10000*sizeof(struct student));
+    LIST list;
+    list = createList();
+
+
+    while(fgets(value, 1000, fp)!=NULL){
+        char * token = strtok(value, ",");
+        char * ID = token;
+        char * token = strtok(value, ",");
+        int cgpa = (int) token;
+        char * token = strtok(value, ",");
+
+        struct student s1;
+
+        s1.cgpa = cgpa;
+        s1.ID = ID;
+        array[i] = s1;
+   }
+   fclose(fp);
+    FILE* fp;
+    fp = fopen("data.txt", "r");
+    char * value = malloc(1000*sizeof(char));
+
+    while(fgets(value, 100, fp)!=NULL){
+        char * token = strtok(value, ",");
+        char * ID = token;
+        char * token = strtok(value, ",");
+        int cgpa = (int) token;
+        char * token = strtok(value, ",");
+
+        addNode(list, ID, cgpa);
+   }
+
+
+
+    
+    addNode(list, "A", 9);
+    addNode(list, "B", 9);
+
+
+
+ 
+
+
+    
+
+
+
+
+}
